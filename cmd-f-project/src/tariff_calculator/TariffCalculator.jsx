@@ -12,10 +12,9 @@ const TariffCalculator = () => {
 
   const calculateTariff = async () => {
     setLoading(true);
-    const aiData = await fetchAIResponse(inputData);
+    const aiData = await fetchAIResponse();
     
     if (aiData) {
-      // Assuming the AI returns the calculated tariff in a field called 'tariff'
       setTariff(aiData.tariff);
     } else {
       setTariff('Error calculating tariff');
@@ -31,7 +30,13 @@ const TariffCalculator = () => {
           type="text" 
           value={inputData} 
           onChange={handleInputChange} 
-          placeholder="Enter details for tariff calculation" 
+          placeholder="Enter product description" 
+        />
+        <input 
+          type="text" 
+          value={inputData} 
+          onChange={handleInputChange} 
+          placeholder="Enter price of product" 
         />
         <button onClick={calculateTariff} disabled={loading}>
           {loading ? 'Calculating...' : 'Calculate Tariff'}
