@@ -8,7 +8,7 @@ export default function IconChip({ activeFilters, onFilterChange }) {
   const filters = [
     { label: "Women-Owned", value: "women" },
     { label: "BIPOC-Owned", value: "bipoc" },
-    { label: "Hygiene", value: "hygiene" }
+    { label: "Eco-Friendly", value: "ecofriendly" }
   ];
 
   return (
