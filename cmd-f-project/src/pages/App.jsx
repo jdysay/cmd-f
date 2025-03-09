@@ -21,7 +21,23 @@ import Lookup from "./Lookup";
 
 // Authentication
 import { AuthProvider, useAuth } from "../database/AuthContext.jsx"; 
-import Layout from '../layouts/Layouts'; 
+import Layout from '../layouts/Layouts';
+
+// Custom hook to change body background color
+function useBodyBackground(color) {
+  useEffect(() => {
+    document.body.style.backgroundColor = color;
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
+  }, [color]);
+}
+
+// Higher-Order Component to handle background color logic
+function WithBackground({ Component, color }) {
+  useBodyBackground(color);
+  return <Component />;
+}
 
 function App() {
   // Firebase authentication state
@@ -43,17 +59,15 @@ function App() {
             <div className="auth-inner">
               <Routes>
                 {/* Route without Layout */}
-                <Route path="/" element={<Homepage />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+                <Route path="/" element={<WithBackground Component={Homepage} color="#1b0000" />} />
+                <Route path="/login" element={<WithBackground Component={Login} color="#FDEBE5" />} />
+                <Route path="/register" element={<WithBackground Component={Register} color="#FDEBE5" />} />
 
                 {/* Apply Layout only to these pages */}
-                {/* <Route element={<Layout />}> */}
-                  <Route path="/tariff-calculator" element={<TariffCalculator />} />
-                  <Route path="/profile" element={<ProtectedProfileRoute />} />
-                  <Route path="/business-info-form" element={<ProtectedRoute />} />
-                  <Route path="/lookup" element={<Lookup />} />
-                {/* </Route> */}
+                <Route path="/tariff-calculator" element={<WithBackground Component={TariffCalculator} color="#FDEBE5" />} />
+                <Route path="/profile" element={<ProtectedProfileRoute />} />
+                <Route path="/business-info-form" element={<ProtectedRoute />} />
+                <Route path="/lookup" element={<WithBackground Component={Lookup} color="#FDEBE5" />} />
               </Routes>
               <ToastContainer />
             </div>
