@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "./firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, getDocs, collection } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 import { Link } from "react-router-dom";
@@ -20,29 +20,51 @@ function Profile({ userId }) {
     const fetchUserData = async () => {
       auth.onAuthStateChanged(async (user) => {
         if (user) {
-          const docRef = doc(db, "Users", userId);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            setUserDetails(docSnap.data());
+          const userDocRef = doc(db, "Users", userId);
+          const userDocSnap = await getDoc(userDocRef);
+  
+          if (userDocSnap.exists()) {
+            const userData = userDocSnap.data();
+  
+            // Get all documents from the businessInfo subcollection
+            const businessCollectionRef = collection(db, "Users", userId, "businessInfo");
+            const businessDocsSnap = await getDocs(businessCollectionRef);
+  
+            let businessData = {};
+            let businessDocId = null; // Store the actual document ID
+  
+            // Assuming the user has only one business document, pick the first one
+            if (!businessDocsSnap.empty) {
+              const businessDoc = businessDocsSnap.docs[0]; // Get first document
+              businessData = businessDoc.data();
+              businessDocId = businessDoc.id; // Get document ID dynamically
+            }
+  
+            setUserDetails({ ...userData, ...businessData });
+  
             setInputs({
-              businessName: docSnap.data().businessName || "",
-              description: docSnap.data().description || "",
-              website: docSnap.data().website || "",
-              businessEmail: docSnap.data().businessEmail || "",
+              businessName: businessData.businessName || "",
+              description: businessData.description || "",
+              website: businessData.website || "",
+              businessEmail: businessData.businessEmail || "",
             });
+  
+            // Save businessDocId to state if needed for updating
+            setBusinessDocId(businessDocId);
           } else {
             console.log("User document not found");
           }
         }
       });
     };
+  
     fetchUserData();
   }, []);
 
   async function handleLogout() {
     try {
       await auth.signOut();
-      window.location.href = "/";
+      window.location.href = "/homepage";
       toast.success("User logged out successfully!", { position: "top-center" });
     } catch (error) {
       toast.error(error.message, { position: "bottom-center" });
@@ -56,38 +78,36 @@ function Profile({ userId }) {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  // Handle form submit to update user data
+  const [businessDocId, setBusinessDocId] = useState(null);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+  
     try {
-      // Reference to the specific user document
-      const userDocRef = doc(db, "Users", userId);
-
-      // Update the user details in Firestore
-      await updateDoc(userDocRef, {
+      if (!businessDocId) {
+        toast.error("No business document found!", { position: "bottom-center" });
+        return;
+      }
+  
+      // Use the dynamically retrieved businessDocId
+      const businessDocRef = doc(db, "Users", userId, "businessInfo", businessDocId);
+  
+      await updateDoc(businessDocRef, {
         businessName: inputs.businessName,
         description: inputs.description,
         website: inputs.website,
         businessEmail: inputs.businessEmail,
       });
-
+  
       toast.success("Profile updated successfully!", { position: "top-center" });
-
-      // Re-fetch the user data after updating
-      const docSnap = await getDoc(userDocRef);
-      if (docSnap.exists()) {
-        setUserDetails(docSnap.data());  // Set updated data
-        setInputs({
-          businessName: docSnap.data().businessName || "",
-          description: docSnap.data().description || "",
-          website: docSnap.data().website || "",
-          businessEmail: docSnap.data().businessEmail || "",
-        });
-      } else {
-        console.log("User document not found");
+  
+      // Re-fetch updated business data
+      const businessDocSnap = await getDoc(businessDocRef);
+      if (businessDocSnap.exists()) {
+        setUserDetails((prev) => ({ ...prev, ...businessDocSnap.data() }));
       }
-
-      setIsEditing(false); // Switch back to view mode
+  
+      setIsEditing(false);
     } catch (error) {
       toast.error(error.message, { position: "bottom-center" });
     }
