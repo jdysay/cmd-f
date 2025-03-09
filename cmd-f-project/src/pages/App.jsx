@@ -86,7 +86,7 @@ function App() {
             <Route path="/tariff-calculator" element={<TariffCalculator />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<ProtectedProfileRoute />} />
             <Route path="/business-info-form" element={<ProtectedRoute />} />
             <Route path="/lookup" element={<Lookup />} />
           </Routes>
@@ -99,11 +99,22 @@ function App() {
   );
 }
 
+// ProtectedRoute for Profile page
+function ProtectedProfileRoute() {
+  const { user } = useAuth(); // Get user from AuthProvider
+
+  return user ? (
+    <Profile userId={user.uid} />
+  ) : (
+    <Navigate to="/profile" />
+  );
+}
+
 function ProtectedRoute() {
   const { user } = useAuth(); // Get user from AuthProvider
 
   return user ? (
-    <BusinessInfoForm userEmail={user.uid} />
+    <BusinessInfoForm userId={user.uid} />
   ) : (
     <Navigate to="/login" />
   );
