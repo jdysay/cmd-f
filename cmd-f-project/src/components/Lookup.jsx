@@ -2,16 +2,13 @@
 
 import React, { useEffect, useState, Suspense } from "react"
 import { collection, getDocs, doc } from "firebase/firestore"
-import { db } from "../components/firebase" // Ensure this points to your Firebase config
+import { db } from "./firebase" // Ensure this points to your Firebase config
 
-import ComboBox from "../components/ComboBox"
-import IconChip from "../components/IconChip"
+import ComboBox from "./ComboBox"
+import IconChip from "./IconChip"
 
 import "../css/lookup.css"
 
-import Navbar from "../components/navbar"
-
-import defaultImage from "../images/Rectangle-41.png"
 
 // Array of images
 const images = [
@@ -22,7 +19,7 @@ const images = [
 ];
 
 // Lazy load the MUICardImage component
-const MUICardImage = React.lazy(() => import("../components/MUICardImage")) // Adjust the path to MUICardImage if necessary
+const MUICardImage = React.lazy(() => import("./MUICardImage")) // Adjust the path to MUICardImage if necessary
 
 
 //FOR
@@ -115,7 +112,7 @@ function Lookup() {
   return (
 
     <>
-    <Navbar/>
+  
     <div className="lookup-container">
       
     <div className="mt-40 mb-20">

@@ -4,6 +4,12 @@ import TariffCalculator from "../tariff_calculator/TariffCalculator";
 import BusinessInfoForm from './BusinessInfoForm';
 import Layout from "../layouts/Layouts";
 
+<<<<<<< Updated upstream
+=======
+import Navbar from "../components/navbar.jsx";
+
+import logo from "../assets/logo.png";
+>>>>>>> Stashed changes
 import "./../css/App.css";
 
 // Firebase components
@@ -17,7 +23,7 @@ import { ToastContainer } from "react-toastify";
 // Firebase auth
 import { auth } from "../components/firebase";
 import Homepage from "../components/homepage";
-import Lookup from "./Lookup";
+import Lookup from "../components/Lookup.jsx";
 
 // Authentication
 import { AuthProvider, useAuth } from "../database/AuthContext.jsx"; 
@@ -56,10 +62,15 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+<<<<<<< Updated upstream
         <Layout>
+=======
+
+>>>>>>> Stashed changes
         <div className="App">
           <div className="auth-wrapper">
             <div className="auth-inner">
+            <Navbar/>
               <Routes>
                 {/* Route without Layout */}
                 <Route path="/" element={<WithBackground Component={Homepage} color="#1b0000" />} />
