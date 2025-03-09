@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import TariffCalculator from "../tariff_calculator/TariffCalculator";
-import BusinessInfoForm from './BusinessInfoForm'
+import BusinessInfoForm from './BusinessInfoForm';
 
 import logo from "../assets/logo.png";
 import "./../css/App.css";
@@ -17,29 +17,11 @@ import { ToastContainer } from "react-toastify";
 // Firebase auth
 import { auth } from "../components/firebase";
 import Homepage from "../components/homepage";
-
 import Lookup from "./Lookup";
 
 // Authentication
-import { AuthProvider, useAuth } from "../database/AuthContext.jsx"; // Import the AuthProvider
-// Layout component to dynamically change the background
-const Layout = ({ children }) => {
-  const location = useLocation();
-  const isTariffPage = location.pathname === "/tariff-calculator";
-
-  return (
-    <div className={isTariffPage ? "min-h-screen w-full bg-custom-peach" : "min-h-screen w-full bg-white"}>
-      {isTariffPage && (
-        <img 
-          src={logo}
-          alt="logo"
-          className="absolute top-4 left-4 w-auto h-auto"
-        />
-      )}
-      {children}
-    </div>
-  );
-};
+import { AuthProvider, useAuth } from "../database/AuthContext.jsx"; 
+import Layout from '../layouts/Layouts'; 
 
 function App() {
   // Firebase authentication state
@@ -50,13 +32,13 @@ function App() {
       setUser(user);
     });
 
-    return () => unsubscribe(); // Cleanup subscription
+    return () => unsubscribe();
   }, []);
 
   return (
     <AuthProvider>
       <Router>
-        {/* <Layout>
+        <Layout>
           <div className="App">
             <div className="auth-wrapper">
               <div className="auth-inner">
@@ -65,35 +47,15 @@ function App() {
                   <Route path="/tariff-calculator" element={<TariffCalculator />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
-                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/profile" element={<ProtectedProfileRoute />} />
+                  <Route path="/business-info-form" element={<ProtectedRoute />} />
+                  <Route path="/lookup" element={<Lookup />} />
                 </Routes>
                 <ToastContainer />
               </div>
             </div>
           </div>
-        </Layout> */}
-        <div className="App">
-        <div className="auth-wrapper">
-        <div className="auth-inner">
-          
-          <Routes>
-            {/* <Route
-              path="/"
-              element={user ? <Navigate to="/profile" /> : <Login />} /> */}
-
-            <Route path="/" element={<Homepage />} />
-            {/* Define a route for the TariffCalculator component */}
-            <Route path="/tariff-calculator" element={<TariffCalculator />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<ProtectedProfileRoute />} />
-            <Route path="/business-info-form" element={<ProtectedRoute />} />
-            <Route path="/lookup" element={<Lookup />} />
-          </Routes>
-          <ToastContainer/>
-        </div>
-        </div>
-        </div>
+        </Layout>
       </Router>
     </AuthProvider>
   );
@@ -106,7 +68,7 @@ function ProtectedProfileRoute() {
   return user ? (
     <Profile userId={user.uid} />
   ) : (
-    <Navigate to="/profile" />
+    <Navigate to="/login" />
   );
 }
 

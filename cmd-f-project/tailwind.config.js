@@ -16,6 +16,9 @@ export default {
         'custom-peach-medium': '#FFD2C3',
         'custom-peach-dark': '#F8757D',
         'custom-purple': '#543B75',
+      },
+      fontFamily: {
+        canada: ["Radio-Canada", "sans-serif"]
       }
     },
   },

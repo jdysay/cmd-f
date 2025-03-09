@@ -46,14 +46,14 @@ function Register() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">
-      <div className="bg-white shadow-lg rounded-lg p-6 sm:p-8 w-full max-w-[900px] border border-rose-200" style={{ width: '30vw' }}>
-        <h3 className="text-2xl font-semibold text-center mb-4 text-rose-600">Sign Up</h3>
+      <div className="bg-white rounded-lg p-6 sm:p-8 w-full max-w-[900px]" style={{ width: '30vw' }}>
+        <h3 className="text-5xl font-semibold text-center mb-10 text-custom-purple">Sign Up</h3>
 
-        {error && <p className="text-sm text-rose-600 mt-1">{error}</p>}
+        {error && <p className="text-sm text-custom-red mt-1">{error}</p>}
 
         <form onSubmit={handleRegister}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-black mb-1 text-left">First Name</label>
+          <div className="mb-10">
+            <label className="block text-xl font-medium text-custom-purple mb-1 text-left">First Name</label>
             <input
               type="text"
               placeholder="Enter your first name"
@@ -64,8 +64,8 @@ function Register() {
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-black mb-1 text-left">Last Name</label>
+          <div className="mb-10">
+            <label className="block text-xl font-medium text-custom-purple mb-1 text-left">Last Name</label>
             <input
               type="text"
               placeholder="Enter your last name"
@@ -75,8 +75,8 @@ function Register() {
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-black mb-1 text-left">Email Address</label>
+          <div className="mb-10">
+            <label className="block text-xl font-medium text-custom-purple mb-1 text-left">Email Address</label>
             <input
               type="email"
               placeholder="Enter your email"
@@ -87,8 +87,8 @@ function Register() {
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-black mb-1 text-left">Password</label>
+          <div className="mb-10">
+            <label className="block text-xl font-medium text-custom-purple mb-1 text-left">Password</label>
             <input
               type="password"
               placeholder="Enter your password"
@@ -101,14 +101,14 @@ function Register() {
 
           <button
             type="submit"
-            className="w-full bg-rose-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-400 transition duration-200"
+            className="w-full bg-custom-red text-white py-2 px-4 rounded-lg font-medium hover:bg-custom-red-dark focus:outline-none focus:ring-2 focus:ring-rose-400 transition duration-200"
           >
             Sign Up
           </button>
         </form>
 
-        <p className="text-sm text-center mt-3 text-black">
-          Already registered? <a href="/login" className="font-bold text-black hover:underline">Login</a>
+        <p className="text-sm text-center mt-3 text-custom-purple">
+          Already registered? <a href="/login" className="font-bold text-custom-peach-dark hover:underline">Login</a>
         </p>
       </div>
     </div>
