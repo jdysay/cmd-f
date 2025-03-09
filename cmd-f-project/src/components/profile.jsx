@@ -42,7 +42,7 @@ function Profile({ userId }) {
   async function handleLogout() {
     try {
       await auth.signOut();
-      window.location.href = "/login";
+      window.location.href = "/";
       toast.success("User logged out successfully!", { position: "top-center" });
     } catch (error) {
       toast.error(error.message, { position: "bottom-center" });
