@@ -43,39 +43,6 @@ function TextBlock() {
             </Link>
           </div>
         </div>
-
-        <footer id="textblock-footer">
-          <div className="footer-content">
-            <div className="footer-section">
-              <h3 className="footer-heading">Maple Market</h3>
-              <p className="footer-description">
-                Connecting local producers with conscious consumers for sustainable shopping.
-              </p>
-            </div>
-
-            <div className="footer-section">
-              <h3 className="footer-heading">Useful Links</h3>
-              <ul className="footer-links">
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/lookup">Explore</Link>
-                </li>
-                <li>
-                  <Link to="/login">Sell</Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="footer-section">
-              <h3 className="footer-heading">Creators</h3>
-              <p className="footer-creators">Mara, Bianca, Jennifer, and Jaycie at cmd-f 2025</p>
-            </div>
-          </div>
-
-          <div className="footer-copyright">&copy; 2025 Maple Market. All rights reserved.</div>
-        </footer>
       </div>
     </div>
   );
