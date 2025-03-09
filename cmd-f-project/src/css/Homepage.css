@@ -18,7 +18,7 @@
   #textblock-title {
     color: #ffe9da;
     font-size: 60px;
-    font-weight: 600;
+    font-weight: 500;
   }
   
   #textblock-content {
@@ -100,7 +100,7 @@
     text-decoration: none;
     color: #ffaf1b;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
   }
   
   .animation {
