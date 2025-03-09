@@ -4,7 +4,6 @@ import TariffCalculator from "../tariff_calculator/TariffCalculator";
 import BusinessInfoForm from './BusinessInfoForm'
 
 import logo from "../assets/logo.png";
-
 import "./../css/App.css";
 
 // Firebase components
