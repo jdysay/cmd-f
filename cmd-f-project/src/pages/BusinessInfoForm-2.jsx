@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { doc, collection, addDoc } from 'firebase/firestore';
-import { db } from './../config/firestore.js';
+import { db } from '../config/firestore.js';
 import './../css/BIF.css'
 
 function BusinessInfoForm({userId}){
@@ -47,52 +47,54 @@ function BusinessInfoForm({userId}){
 
     return (
         <>
-        <form onSubmit={handleSubmit}>
-            <div className="container">
-                <label>
-                Business Name
-                <input
-                    type="text"
-                    name="businessName"
-                    value={inputs.businessName}
-                    onChange={handleChange}
-                />
-                </label>
-
-                <label>
-                Business Email
-                <input
-                    type="text"
-                    name="businessEmail"
-                    value={inputs.businessEmail}
-                    onChange={handleChange}
-                />
-                </label>
-            </div>
-
-            <div className="container">
-                <label>
-                Website
-                <input
-                    type="text"
-                    name="website"
-                    value={inputs.website}
-                    onChange={handleChange}
-                />
-                </label>
-            </div>
-
-            <div className="container">
-                <label>
-                Business Description
-                <textarea
-                    name="description"
-                    value={inputs.description}
-                    onChange={handleChange}
-                />
-                </label>
-            </div>
-
+          <h1>Business Info Form</h1>
+    
+          <form onSubmit={handleSubmit}>
+            <label>
+              Business Name
+              <input
+                type="text"
+                name="businessName"
+                value={inputs.businessName}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+    
+            <label>
+              Description of your business
+              {/* Use <textarea> here */}
+              <textarea
+                name="description"
+                value={inputs.description}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+    
+            <label>
+              Website
+              <input
+                type="text"
+                name="website"
+                value={inputs.website}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+    
+            <label>
+              Business Email
+              <input
+                type="text"
+                name="businessEmail"
+                value={inputs.businessEmail}
+                onChange={handleChange}
+                id="businessEmail"
+              />
+            </label>
+            <br />
+    
             <input id="submit-button" type="submit" value="Submit" />
             </form>
         </>
