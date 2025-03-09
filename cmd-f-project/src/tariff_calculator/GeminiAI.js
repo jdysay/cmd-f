@@ -8,6 +8,9 @@ export const fetchAIResponse = async(productDescription, productPrice) => {
 
         const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash'});
 
+        const productDescription = "Smartphone";
+        const productPrice = 500;
+
         const prompt = `
             Calculate the estimated tariff for importing the following product:
             Item: ${productDescription}
