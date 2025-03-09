@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import TariffCalculator from "../tariff_calculator/TariffCalculator";
 import BusinessInfoForm from './BusinessInfoForm';
 
-import logo from "../assets/logo.png";
 import "./../css/App.css";
 
 // Firebase components
@@ -22,6 +21,9 @@ import Lookup from "./Lookup";
 // Authentication
 import { AuthProvider, useAuth } from "../database/AuthContext.jsx"; 
 import Layout from '../layouts/Layouts';
+
+// Import the Mission component
+import Mission from "../components/mission"; 
 
 // Custom hook to change body background color
 function useBodyBackground(color) {
@@ -62,12 +64,11 @@ function App() {
                 <Route path="/" element={<WithBackground Component={Homepage} color="#1b0000" />} />
                 <Route path="/login" element={<WithBackground Component={Login} color="#FDEBE5" />} />
                 <Route path="/register" element={<WithBackground Component={Register} color="#FDEBE5" />} />
-
-                {/* Apply Layout only to these pages */}
                 <Route path="/tariff-calculator" element={<WithBackground Component={TariffCalculator} color="#FDEBE5" />} />
                 <Route path="/profile" element={<ProtectedProfileRoute />} />
                 <Route path="/business-info-form" element={<ProtectedRoute />} />
                 <Route path="/lookup" element={<WithBackground Component={Lookup} color="#FDEBE5" />} />
+                <Route path="/mission" element={<WithBackground Component={Mission} color="#FDEBE5" />} />
               </Routes>
               <ToastContainer />
             </div>
