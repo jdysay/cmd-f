@@ -48,12 +48,12 @@ function App() {
                 <Route path="/register" element={<Register />} />
 
                 {/* Apply Layout only to these pages */}
-                <Route element={<Layout />}>
+                {/* <Route element={<Layout />}> */}
                   <Route path="/tariff-calculator" element={<TariffCalculator />} />
                   <Route path="/profile" element={<ProtectedProfileRoute />} />
                   <Route path="/business-info-form" element={<ProtectedRoute />} />
                   <Route path="/lookup" element={<Lookup />} />
-                </Route>
+                {/* </Route> */}
               </Routes>
               <ToastContainer />
             </div>

@@ -4,6 +4,8 @@ import { db } from '../components/firebase'; // Ensure this points to your Fireb
 
 import ComboBox from '../components/ComboBox'
 
+import "../css/lookup.css";
+
 // Lazy load the MUICardImage component
 const MUICardImage = React.lazy(() => import('../components/MUICardImage')); // Adjust the path to MUICardImage if necessary
 
