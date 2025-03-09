@@ -21,43 +21,66 @@ import { ToastContainer } from "react-toastify";
 import { auth } from "../components/firebase";
 import Homepage from "../components/homepage";
 
+import Lookup from "./Lookup";
+
+// Authentication
+import { AuthProvider, useAuth } from "../database/AuthContext.jsx"; // Import the AuthProvider
 
 function App() {
 
   // firebase 
-  const [user, setUser] = useState();
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setUser(user);
-    });
-  });
+  // const [user, setUser] = useState();
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     setUser(user);
+  //   });
+  // });
   // firebase end
 
-  return (
-    <Router>
-      <div className="App">
-      <div className="auth-wrapper">
-      <div className="auth-inner">
-        
-        <Routes>
-          {/* <Route
-            path="/"
-            element={user ? <Navigate to="/profile" /> : <Login />} /> */}
+  // const { userFb } = useAuth();
 
-          <Route path="/" element={<Homepage />} />
-          {/* Define a route for the TariffCalculator component */}
-          <Route path="/tariff-calculator" element={<TariffCalculator />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/business-info-form" element={<BusinessInfoForm userEmail="NgXi9b2B6YcVluTl1K6FnTKMgso2" />} />
-        </Routes>
-        <ToastContainer/>
-      </div>
-      </div>
-      </div>
-    </Router>
+  return (
+    <AuthProvider>
+      <Router>
+        <div className="App">
+        <div className="auth-wrapper">
+        <div className="auth-inner">
+          
+          <Routes>
+            {/* <Route
+              path="/"
+              element={user ? <Navigate to="/profile" /> : <Login />} /> */}
+
+            <Route path="/" element={<Homepage />} />
+            {/* Change root path to this in the future? */}
+            <Route path="/lookup" element={<Lookup />} />
+            {/* Define a route for the TariffCalculator component */}
+            <Route path="/tariff-calculator" element={<TariffCalculator />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/business-info-form"
+              element={<ProtectedRoute />}
+            />
+          </Routes>
+          <ToastContainer/>
+        </div>
+        </div>
+        </div>
+      </Router>
+    </AuthProvider>
   )
+}
+
+function ProtectedRoute() {
+  const { user } = useAuth(); // Get user from AuthProvider
+
+  return user ? (
+    <BusinessInfoForm userEmail={user.uid} />
+  ) : (
+    <Navigate to="/login" />
+  );
 }
 
 export default App;
