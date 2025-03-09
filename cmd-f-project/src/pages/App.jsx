@@ -38,24 +38,27 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Layout>
-          <div className="App">
-            <div className="auth-wrapper">
-              <div className="auth-inner">
-                <Routes>
-                  <Route path="/" element={<Homepage />} />
+        <div className="App">
+          <div className="auth-wrapper">
+            <div className="auth-inner">
+              <Routes>
+                {/* Route without Layout */}
+                <Route path="/" element={<Homepage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+
+                {/* Apply Layout only to these pages */}
+                <Route element={<Layout />}>
                   <Route path="/tariff-calculator" element={<TariffCalculator />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
                   <Route path="/profile" element={<ProtectedProfileRoute />} />
                   <Route path="/business-info-form" element={<ProtectedRoute />} />
                   <Route path="/lookup" element={<Lookup />} />
-                </Routes>
-                <ToastContainer />
-              </div>
+                </Route>
+              </Routes>
+              <ToastContainer />
             </div>
           </div>
-        </Layout>
+        </div>
       </Router>
     </AuthProvider>
   );
