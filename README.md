@@ -15,17 +15,4 @@ On the backend, Maple Market leverages a robust database that organizes business
 
 In terms of the technology stack, Maple Market is built using React, Tailwind, and Firebase, allowing for smooth, real-time updates and a responsive experience across devices. With this infrastructure, we’re making it faster and easier for Canadians to #BuyCanadian, supporting local economies while enhancing the user experience.
 
-## Challenges we ran into
-
-
-## Accomplishments that we're proud of
-Firebase
-Parallax
-
-## What we learned
-Firebase
-How to use Material UI Components in React
-
-## What's next for Maple Market
-
 
