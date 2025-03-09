@@ -1,54 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FAD4C0; /* Custom peach */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 .container {
-    display: flex;
-    flex-direction: row; /* Stacks children vertically */
-    gap: 15px; /* Adds spacing between form fields */
-    max-width: 900px; 
-    margin-bottom: 20px; /* Adds space between sections */
-  }
-  
-  label {
-    display: flex;
-    flex-direction: column; 
-    font-weight: bold;
-    color: #F8757D;
-  }
-  
-  input {
-    width: 300px;
-    padding: 8px;
-    border: 1px solid #F8757D;
-    border-radius: 20px;
-    margin-top: 5px;
-    padding: 15px;
-    font-weight: 100;
-  }
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 800px;
+    margin-top: 20px;
+}
 
-  textarea {
-    width: 600px;
+.header {
+    font-size: 24px;
+    color: #5D3EBC; /* Custom purple */
+    margin-bottom: 10px;
+}
+
+.chat-box {
+    width: 1000px;
     height: 300px;
-    padding: 40px;
-    border: 1px solid #F8757D;
-    border-radius: 20px;
-    margin-top: 5px;
+    background: white;
+    border: 1px solid #D88C6C; /* Custom peach dark */
+    border-radius: 10px;
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 20px;
+}
 
-    font-weight: 100;
-  }
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
 
-#submit-button {
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #5D3EBC;
+    margin-bottom: 5px;
+}
+
+input {
+    height: 40px;
+    padding: 5px;
+    border: 1px solid #D88C6C;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #E63946; /* Custom red */
     color: white;
-    width: 100px;
-    padding: 8px;
-    border-radius: 20px;
-    background-color: #F8757D;
-}
-  
-h3 {
-    color: #543B75;
-    font-size: xx-large;
-    font-weight: 900;
-    padding: 5%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-#email, #password {
-    width: 620px;
+button:hover {
+    background-color: #C5303E;
 }
