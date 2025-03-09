@@ -13,12 +13,9 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@google/generative-ai": "^0.24.0",
-
-    "@react-spring/parallax": "^9.7.5",
-
     "@mui/icons-material": "^6.4.7",
     "@mui/material": "^6.4.7",
-
+    "@react-spring/parallax": "^9.7.5",
     "axios": "^1.8.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
