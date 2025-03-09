@@ -2,11 +2,14 @@ import { GoogleGenerativeAI } from '@google/generative-ai'
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
-export const fetchAIResponse = async(productDescription, productPrice) => {
+export const fetchAIResponse = async(productDescriptionUser, productPriceUser) => {
     try {
         const genAI = new GoogleGenerativeAI(API_KEY);
 
         const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash'});
+
+        const productDescription = productDescriptionUser;
+        const productPrice = productPriceUser;
 
         const prompt = `
             Calculate the estimated tariff for importing the following product:
