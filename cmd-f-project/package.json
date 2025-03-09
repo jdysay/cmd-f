@@ -13,8 +13,12 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@google/generative-ai": "^0.24.0",
+
+    "@react-spring/parallax": "^9.7.5",
+
     "@mui/icons-material": "^6.4.7",
     "@mui/material": "^6.4.7",
+
     "axios": "^1.8.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
@@ -25,6 +29,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0",
+    "react-scroll-parallax": "^3.4.5",
     "react-toastify": "^11.0.5"
   },
   "devDependencies": {

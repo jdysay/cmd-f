@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        caprasimo: ['Caprasimo', 'cursive'],
+      },
       colors: {
         'custom-red': '#D65C67',
         'custom-red-dark': '#920B2B',

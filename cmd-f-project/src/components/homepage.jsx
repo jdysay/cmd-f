@@ -1,61 +1,60 @@
 import React from 'react';
+import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 
-// Header Component
-const Header = () => (
-  <header>
-    <h1>Welcome to My Homepage</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-);
+import TextBlock from './textblock';
+import "../css/Homepage.css";
 
-// Main Content Section
-const MainContent = () => (
-  <section id="home">
-    <h2>Discover Awesome Content</h2>
-    <p>This is the homepage where we showcase interesting content and information.</p>
-    <button>Learn More</button>
-  </section>
-);
+import Navbar from './navbar';
 
-// About Section
-const About = () => (
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We are a team dedicated to bringing you great content and experiences. Stay tuned for more!</p>
-  </section>
-);
+function Homepage() {
+  return (
 
-// Contact Section
-const Contact = () => (
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Feel free to reach out with any questions or feedback!</p>
-    <button>Contact</button>
-  </section>
-);
+    <>
+    
+    <Navbar/>
+      <Parallax pages={2} style={{ top: '0', left: '0' }} class="animation">
+      <ParallaxLayer offset={0} speed={0.35}>
+          <div class="animation_layer parallax" id="rectangle-41"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.25}>
+          <div class="animation_layer parallax" id="artback"></div>
+          
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.3}>
+          <div class="animation_layer parallax" id="mountain"></div>
+        </ParallaxLayer>
+        
+        <ParallaxLayer offset={0} speed={0.3}>
+          <div class="animation_layer parallax" id="jungle1"></div>
+        </ParallaxLayer>
 
-// Footer Component
-const Footer = () => (
-  <footer>
-    <p>&copy; 2025 My Website. All rights reserved.</p>
-  </footer>
-);
+        <ParallaxLayer offset={0} speed={0.5}>
+          <div class="animation_layer parallax" id="logoland"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.35}>
+          <div class="animation_layer parallax" id="jungle2"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.5}>
+          <div class="animation_layer parallax" id="jungle3"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.45}>
+          <div class="animation_layer parallax" id="jungle4"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.40}>
+          <div class="animation_layer parallax" id="manonmountain"></div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.35}>
+          <div class="animation_layer parallax" id="jungle5"></div>
+        </ParallaxLayer>
+        
+        <ParallaxLayer offset={1} speed={0.25}>
+          <TextBlock />
+        </ParallaxLayer>
+      </Parallax>
 
-// Main Homepage Component
-const Homepage = () => (
-  <div>
-    <Header />
-    <MainContent />
-    <About />
-    <Contact />
-    <Footer />
-  </div>
-);
+      
+      </>
+  );
+}
 
 export default Homepage;
