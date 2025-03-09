@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: row; /* Stacks children vertically */
+    gap: 15px; /* Adds spacing between form fields */
+    max-width: 900px; 
+    margin-bottom: 20px; /* Adds space between sections */
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column; 
+    font-weight: bold;
+    color: #F8757D;
+  }
+  
+  input {
+    width: 300px;
+    padding: 8px;
+    border: 1px solid #F8757D;
+    border-radius: 20px;
+    margin-top: 5px;
+    padding: 15px;
+    font-weight: 100;
+  }
+
+  textarea {
+    width: 600px;
+    height: 300px;
+    padding: 40px;
+    border: 1px solid #F8757D;
+    border-radius: 20px;
+    margin-top: 5px;
+
+    font-weight: 100;
+  }
+
+#submit-button {
+    color: white;
+    width: 100px;
+    padding: 8px;
+    border-radius: 20px;
+    background-color: #F8757D;
+}
+  
+h3 {
+    color: #543B75;
+    font-size: xx-large;
+    font-weight: 900;
+    padding: 5%;
+}
+
+#email, #password {
+    width: 620px;
+}

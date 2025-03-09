@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { doc, collection, addDoc } from "firebase/firestore";
-import { db } from "./../config/firestore.js";
+import { useState } from 'react';
+import { doc, collection, addDoc } from 'firebase/firestore';
+import { db } from './../config/firestore.js';
+import './../css/BIF.css'
 
 function BusinessInfoForm({ userId }) {
   async function addToDatabase(name, desc, site, email, tags) {
@@ -39,24 +40,11 @@ function BusinessInfoForm({ userId }) {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Split tags by either comma or newline
-    const tagArray = inputs.tags
-      .split(/[\n,]+/) // Split by newline or comma
-      .map((tag) => tag.trim()) // Remove extra spaces
-      .filter((tag) => tag !== ""); // Remove empty tags
-
-    addToDatabase(
-      inputs.businessName,
-      inputs.description,
-      inputs.website,
-      inputs.businessEmail,
-      tagArray
-    );
-    console.log("submitted");
-  };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        addToDatabase(inputs.businessName, inputs.description, inputs.website, inputs.businessEmail);
+        console.log("submitted");
+    }
 
   return (
     <>
@@ -121,6 +109,59 @@ function BusinessInfoForm({ userId }) {
       </form>
     </>
   );
+    return (
+        <>
+        <form onSubmit={handleSubmit}>
+            <div className="container">
+                <label>
+                Business Name
+                <input
+                    type="text"
+                    name="businessName"
+                    value={inputs.businessName}
+                    onChange={handleChange}
+                />
+                </label>
+
+                <label>
+                Business Email
+                <input
+                    type="text"
+                    name="businessEmail"
+                    value={inputs.businessEmail}
+                    onChange={handleChange}
+                />
+                </label>
+            </div>
+
+            <div className="container">
+                <label>
+                Website
+                <input
+                    type="text"
+                    name="website"
+                    value={inputs.website}
+                    onChange={handleChange}
+                />
+                </label>
+            </div>
+
+            <div className="container">
+                <label>
+                Business Description
+                <textarea
+                    name="description"
+                    value={inputs.description}
+                    onChange={handleChange}
+                />
+                </label>
+            </div>
+
+            <input id="submit-button" type="submit" value="Submit" />
+            </form>
+        </>
+    )
+
 }
 
 export default BusinessInfoForm;
