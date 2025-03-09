@@ -3,13 +3,9 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import TariffCalculator from "../tariff_calculator/TariffCalculator";
 import BusinessInfoForm from './BusinessInfoForm';
 import Layout from "../layouts/Layouts";
-
-<<<<<<< Updated upstream
-=======
 import Navbar from "../components/navbar.jsx";
 
 import logo from "../assets/logo.png";
->>>>>>> Stashed changes
 import "./../css/App.css";
 
 // Firebase components
@@ -62,11 +58,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-<<<<<<< Updated upstream
         <Layout>
-=======
-
->>>>>>> Stashed changes
         <div className="App">
           <div className="auth-wrapper">
             <div className="auth-inner">

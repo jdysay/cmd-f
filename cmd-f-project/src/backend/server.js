@@ -6,7 +6,9 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 dotenv.config();
 
 const app = express();
-const port = 5050;
+
+// Use the environment variable PORT, or default to 5050 if not provided
+const port = process.env.PORT || 5050;
 
 app.use(cors({
   origin: 'http://localhost:5173', 
@@ -53,7 +55,8 @@ app.post('/calculate-tariff', async (req, res) => {
   });
 });
 
-
+// Use '0.0.0.0' to allow the app to accept connections from any external IP, 
+// and bind it to the port specified by the environment variable or fallback port
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running at http://localhost:${port}`);
 });
