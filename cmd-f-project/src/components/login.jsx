@@ -23,8 +23,8 @@ function Login() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-white flex items-center justify-center" >
-    <div className="flex flex-col items-center justify-center bg-white rounded-lg p-6 sm:p-8 w-full max-w-[800px]" style={{ width: '100vw' }}>
+    <div className="flex items-center justify-center min-h-screen bg-white" >
+    <div className="bg-white rounded-lg p-6 sm:p-8 w-full max-w-[900px]" style={{ width: '30vw' }}>
       <h3 className="text-5xl font-semibold text-center mb-4 text-custom-purple">Login</h3>
       {error && <p className="text-sm text-rose-600 mt-1">{error}</p>}
 
