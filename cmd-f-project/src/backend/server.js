@@ -19,7 +19,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 async function getTariffFromAI(product, price) {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
 
-    const prompt = `Given the product "${product}" and a price of $${price}, calculate the estimated tariff based on it coming from the United States of America and going into Canada`;
+    const prompt = `If I bought ${product} from the US right now for $${price} please calculate the estimated tariffs that would be imposed if I brought it back to Canada right now. Please tell me an approximation of how much in Canadian dollar I will be paying in tarrifs`;
 
     try {
         const result = await model.generateContent(prompt);
