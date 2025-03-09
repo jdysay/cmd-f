@@ -56,7 +56,6 @@ const TariffCalculator = () => {
                 <p>lorem ipsum</p>
               </div>
                
-                {/* Messages Display */}
                 <div className="w-[800px] h-[300px] p-4 bg-white border border-custom-peach-dark rounded-xl overflow-y-auto break-words">
               {messages.map((msg, index) => (
                   <div
