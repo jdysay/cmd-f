@@ -70,6 +70,8 @@ nav {
 }
 
 .sticky-button {
+  width: 10rem;
+  height: 5rem;
   position: fixed; /* Keep the button fixed at the bottom */
   right: 20px;
   bottom: 20px;
