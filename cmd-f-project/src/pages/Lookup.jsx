@@ -2,8 +2,8 @@ import React, { useEffect, useState, Suspense } from 'react';
 import { collection, getDocs, doc } from 'firebase/firestore';
 import { db } from '../components/firebase'; // Ensure this points to your Firebase config
 
-import ComboBox from '../components/ComboBox'
-import IconChip from '../components/IconChip'
+import ComboBox from '../components/ComboBox';
+import IconChip from '../components/IconChip';
 
 // Lazy load the MUICardImage component
 const MUICardImage = React.lazy(() => import('../components/MUICardImage')); // Adjust the path to MUICardImage if necessary
@@ -33,8 +33,9 @@ function Lookup() {
             id: businessDoc.id,
             businessName: businessData.businessName,
             description: businessData.description,
-            // Add any additional properties for filtering (e.g., category, type)
-            category: businessData.category || ""
+            // Add any additional properties for filtering (e.g., category, tags)
+            category: businessData.category || "",
+            tags: businessData.tags || [] // Store tags as an array
           });
         });
       }
@@ -64,40 +65,45 @@ function Lookup() {
     filterData(inputValue, updatedFilters); // Re-filter with updated filters
   };
 
-  // Filter the data based on both the inputValue (search) and activeFilters
-  const filterData = (inputValue, activeFilters) => {
-    const filtered = businessData.filter((business) => {
-      // Check if the business name includes the inputValue (case-insensitive)
-      const matchesSearch = business.businessName.toLowerCase().includes(inputValue.toLowerCase());
-
-      // Check if business matches any of the active filters (e.g., category filter)
-      const matchesFilters = activeFilters.size === 0 || activeFilters.has(business.category);
-
-      // Return true if both search and filter conditions are met
-      return matchesSearch && matchesFilters;
+    // Filter the data based on both the inputValue (search) and activeFilters
+    const filterData = (inputValue, activeFilters) => {
+        const filtered = businessData.filter((business) => {
+        // Check if the business name includes the inputValue (case-insensitive)
+        const matchesSearch = business.businessName.toLowerCase().includes(inputValue.toLowerCase());
+    
+        // Ensure business.tags is an array before calling .every() method
+        const businessTags = Array.isArray(business.tags) ? business.tags : [];
+    
+        // Check if business matches all of the active filters (AND condition for tags)
+        const matchesFilters = activeFilters.size === 0 || 
+                                activeFilters.has(business.category) || 
+                                [...activeFilters].every(filter => businessTags.includes(filter));
+    
+        // Return true if both search and filter conditions are met
+        return matchesSearch && matchesFilters;
     });
-
+  
     setFilteredBusinessData(filtered);
   };
 
   return (
     <div>
-        <ComboBox onInputChange={handleInputChange} /> {/* Pass the input change handler to ComboBox */}
-        <IconChip activeFilters={activeFilters} onFilterChange={handleFilterChange} /> {/* Pass active filters to IconChip */}
+      <ComboBox onInputChange={handleInputChange} /> {/* Pass the input change handler to ComboBox */}
+      <IconChip activeFilters={activeFilters} onFilterChange={handleFilterChange} /> {/* Pass active filters to IconChip */}
 
-        {filteredBusinessData.length > 0 ? (
+      {filteredBusinessData.length > 0 ? (
         <Suspense fallback={<p>Loading Cards...</p>}>
-            {filteredBusinessData.map((business) => (
+          {filteredBusinessData.map((business) => (
             <MUICardImage
-                key={business.id}
-                businessName={business.businessName}
-                description={business.description}
+              key={business.id}
+              businessName={business.businessName}
+              description={business.description}
             />
-            ))}
+          ))}
         </Suspense>
-        ) : (
+      ) : (
         <p>No businesses found...</p> // Show a message if no businesses match the search
-        )}
+      )}
     </div>
   );
 }
