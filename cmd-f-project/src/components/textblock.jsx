@@ -1,4 +1,5 @@
 import "../css/Homepage.css";
+import React from 'react';
 import Navbar from "./navbar";
 import Button from "./button";
 import { Link } from "react-router-dom"; // ✅ Correct Import of Link

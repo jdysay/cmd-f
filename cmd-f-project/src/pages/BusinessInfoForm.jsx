@@ -3,6 +3,7 @@ import { doc, collection, addDoc } from 'firebase/firestore';
 import { db } from './../config/firestore.js';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './../css/BIF.css';
+import React from 'react';
 
 function BusinessInfoForm({ userId }) {
   const navigate = useNavigate(); // Initialize navigate function
