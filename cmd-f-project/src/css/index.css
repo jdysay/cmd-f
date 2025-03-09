@@ -9,7 +9,7 @@
 
 /* Body styling */
 body {
-  @apply flex items-center justify-center min-h-screen bg-white;
+  @apply flex items-center justify-center min-h-screen;
 }
 
 /* Form container */
