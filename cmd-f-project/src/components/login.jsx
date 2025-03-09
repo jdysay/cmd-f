@@ -52,7 +52,6 @@ function Login() {
             className="w-full p-3 rounded-md border border-custom-peach-medium bg-white focus:outline-none focus:ring-2 focus:ring-custom-peach-dark text-gray-700 placeholder-gray-500"
           />
         </div>
-
         <button
           type="submit"
           className="w-full bg-custom-red text-white mt-5 py-3 px-5 rounded-lg font-medium hover:bg-custom-red-dark focus:outline-none focus:ring-2 focus:ring-rose-400 transition duration-200"

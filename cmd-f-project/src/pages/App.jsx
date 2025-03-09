@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import TariffCalculator from "../tariff_calculator/TariffCalculator";
-import BusinessInfoForm from './BusinessInfoForm'
+import BusinessInfoForm from './BusinessInfoForm';
 
 import logo from "../assets/logo.png";
 import "./../css/App.css";
@@ -17,7 +17,6 @@ import { ToastContainer } from "react-toastify";
 // Firebase auth
 import { auth } from "../components/firebase";
 import Homepage from "../components/homepage";
-
 import Lookup from "./Lookup";
 
 // Authentication
@@ -33,30 +32,53 @@ function App() {
       setUser(user);
     });
 
-    return () => unsubscribe(); 
+    return () => unsubscribe();
   }, []);
 
   return (
-    <Router>
-      <Layout> {/* Wrap all routes inside Layout */}
-        <div className="App">
-          <div className="auth-wrapper">
-            <div className="auth-inner">
-              <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/tariff-calculator" element={<TariffCalculator />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/business-info-form" element={<BusinessInfoForm />} />
-                <Route path="/lookup" element={<Lookup />} />
-              </Routes>
-              <ToastContainer />
+    <AuthProvider>
+      <Router>
+        <Layout>
+          <div className="App">
+            <div className="auth-wrapper">
+              <div className="auth-inner">
+                <Routes>
+                  <Route path="/" element={<Homepage />} />
+                  <Route path="/tariff-calculator" element={<TariffCalculator />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/profile" element={<ProtectedProfileRoute />} />
+                  <Route path="/business-info-form" element={<ProtectedRoute />} />
+                  <Route path="/lookup" element={<Lookup />} />
+                </Routes>
+                <ToastContainer />
+              </div>
             </div>
           </div>
-        </div>
-      </Layout>
-    </Router>
+        </Layout>
+      </Router>
+    </AuthProvider>
+  );
+}
+
+// ProtectedRoute for Profile page
+function ProtectedProfileRoute() {
+  const { user } = useAuth(); // Get user from AuthProvider
+
+  return user ? (
+    <Profile userId={user.uid} />
+  ) : (
+    <Navigate to="/login" />
+  );
+}
+
+function ProtectedRoute() {
+  const { user } = useAuth(); // Get user from AuthProvider
+
+  return user ? (
+    <BusinessInfoForm userId={user.uid} />
+  ) : (
+    <Navigate to="/login" />
   );
 }
 
