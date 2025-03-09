@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import TariffCalculator from "../tariff_calculator/TariffCalculator";
-
 import logo from "../assets/logo.png";
-
 import "./../css/App.css";
 
 // Firebase components
@@ -66,26 +64,6 @@ function App() {
           </div>
         </div>
       </Layout>
-      <div className="App">
-      <div className="auth-wrapper">
-      <div className="auth-inner">
-        
-        <Routes>
-          {/* <Route
-            path="/"
-            element={user ? <Navigate to="/profile" /> : <Login />} /> */}
-
-          <Route path="/" element={<Homepage />} />
-          {/* Define a route for the TariffCalculator component */}
-          <Route path="/tariff-calculator" element={<TariffCalculator />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-        <ToastContainer/>
-      </div>
-      </div>
-      </div>
     </Router>
   );
 }
