@@ -42,12 +42,14 @@ function BusinessInfoForm({ userId }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await addToDatabase(inputs.businessName, inputs.description, inputs.website, inputs.businessEmail);
+    await addToDatabase(inputs.businessName, inputs.description, inputs.website, inputs.businessEmail, inputs.tags);
     console.log("submitted");
 
     // Navigate to the success or dashboard page after submission
     navigate("/profile"); // Change "/success" to your desired route
   };
+
+  console.log(inputs); // Add this line to log the state
 
   return (
     <>

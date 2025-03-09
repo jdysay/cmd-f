@@ -91,7 +91,7 @@ function ProtectedProfileRoute() {
   return user ? (
     <Profile userId={user.uid} />
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/profile" />
   );
 }
 
