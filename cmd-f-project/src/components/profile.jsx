@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 import ImageAvatar from "./ImageAvatar.jsx"
 
-
 function Profile({ userId }) {
   const [userDetails, setUserDetails] = useState(null);
   const [isEditing, setIsEditing] = useState(false); // State to toggle between view and edit mode
@@ -15,6 +14,7 @@ function Profile({ userId }) {
     description: "",
     website: "",
     businessEmail: "",
+    tags: "", // Add tags to inputs state
   });
 
   useEffect(() => {
@@ -23,33 +23,34 @@ function Profile({ userId }) {
         if (user) {
           const userDocRef = doc(db, "Users", userId);
           const userDocSnap = await getDoc(userDocRef);
-  
+
           if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
-  
+
             // Get all documents from the businessInfo subcollection
             const businessCollectionRef = collection(db, "Users", userId, "businessInfo");
             const businessDocsSnap = await getDocs(businessCollectionRef);
-  
+
             let businessData = {};
             let businessDocId = null; // Store the actual document ID
-  
+
             // Assuming the user has only one business document, pick the first one
             if (!businessDocsSnap.empty) {
               const businessDoc = businessDocsSnap.docs[0]; // Get first document
               businessData = businessDoc.data();
               businessDocId = businessDoc.id; // Get document ID dynamically
             }
-  
+
             setUserDetails({ ...userData, ...businessData });
-  
+
             setInputs({
               businessName: businessData.businessName || "",
               description: businessData.description || "",
               website: businessData.website || "",
               businessEmail: businessData.businessEmail || "",
+              tags: businessData.tags || "", // Add tags if available
             });
-  
+
             // Save businessDocId to state if needed for updating
             setBusinessDocId(businessDocId);
           } else {
@@ -58,7 +59,7 @@ function Profile({ userId }) {
         }
       });
     };
-  
+
     fetchUserData();
   }, []);
 
@@ -72,8 +73,8 @@ function Profile({ userId }) {
     }
   }
 
-   // Handle form change
-   const handleChange = (event) => {
+  // Handle form change
+  const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
@@ -83,31 +84,32 @@ function Profile({ userId }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       if (!businessDocId) {
         toast.error("No business document found!", { position: "bottom-center" });
         return;
       }
-  
+
       // Use the dynamically retrieved businessDocId
       const businessDocRef = doc(db, "Users", userId, "businessInfo", businessDocId);
-  
+
       await updateDoc(businessDocRef, {
         businessName: inputs.businessName,
         description: inputs.description,
         website: inputs.website,
         businessEmail: inputs.businessEmail,
+        tags: inputs.tags, // Update the tags field
       });
-  
+
       toast.success("Profile updated successfully!", { position: "top-center" });
-  
+
       // Re-fetch updated business data
       const businessDocSnap = await getDoc(businessDocRef);
       if (businessDocSnap.exists()) {
         setUserDetails((prev) => ({ ...prev, ...businessDocSnap.data() }));
       }
-  
+
       setIsEditing(false);
     } catch (error) {
       toast.error(error.message, { position: "bottom-center" });
@@ -177,6 +179,18 @@ function Profile({ userId }) {
                     />
                   </label>
                   <br />
+
+                  <label>
+                    Tags (comma separated)
+                    <textarea
+                      name="tags"
+                      value={inputs.tags}
+                      onChange={handleChange}
+                      placeholder="Enter tags separated by commas"
+                    />
+                  </label>
+                  <br />
+
                   <button
                     type="submit"
                     className="w-full bg-rose-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-400 transition duration-200"
@@ -190,6 +204,7 @@ function Profile({ userId }) {
                   <p><strong>Description:</strong> {userDetails.description}</p>
                   <p><strong>Website:</strong> {userDetails.website}</p>
                   <p><strong>Business Email:</strong> {userDetails.businessEmail}</p>
+                  <p><strong>Tags:</strong> {userDetails.tags}</p>
                 </div>
               )}
             </div>
@@ -225,6 +240,5 @@ function Profile({ userId }) {
     </div>
   );
 }
-
 
 export default Profile;

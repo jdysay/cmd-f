@@ -4,7 +4,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase"; // Ensure this imports your Firestore instance
 
-export default function ComboBox() {
+export default function ComboBox({ onInputChange }) {
   const [businessNames, setBusinessNames] = useState([]);
   const [inputValue, setInputValue] = useState(""); // Track input value
   const [filteredOptions, setFilteredOptions] = useState([]); // Control displayed options
@@ -48,7 +48,10 @@ export default function ComboBox() {
     } else {
       setFilteredOptions([]); // Hide options if input is empty
     }
-  }, [inputValue, businessNames]);
+
+    // Pass the inputValue to parent component
+    onInputChange(inputValue);
+  }, [inputValue, businessNames, onInputChange]);
 
   return (
     <Autocomplete
