@@ -50,7 +50,6 @@ const TariffCalculator = () => {
     return (
         <div className="relative w-full min-h-screen bg-custom-peach flex flex-col items-center justify-center p-4 overflow-y-auto">
            
-            {/* Main Container */}
             <div className="w-full bg-custom-peach p-8 rounded-xl mt-10">
               <div className="w-[800px] h-[200px] p-4 bg-white border border-custom-peach-dark rounded-xl overflow-y-auto break-words mb-4 mt-20">
                 <h1 className="text-lg text-custom-purple">Tariff Calculator</h1>

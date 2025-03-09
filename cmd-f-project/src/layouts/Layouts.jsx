@@ -8,34 +8,33 @@ const Layout = ({ children }) => {
   const isAuthPage = location.pathname === "/login" || location.pathname === "/register";
 
   return (
-    <div
-      className={
-        isTariffPage || isAuthPage
-          ? "min-h-screen w-full bg-custom-peach bg-cover bg-center relative"
-          : "min-h-screen w-full bg-custom-peach bg-cover bg-center relative"
-      }
-    >
+    <div className="min-h-screen w-full bg-cover bg-center relative bg-custom-peach">
       {/* Background Image */}
       <img 
         src={moose}
         alt="moose"
         className="absolute inset-0 w-full h-full object-cover z-0" 
       />
-      
-      {/* Content Div */}
-      <div className="absolute inset-y-0 right-0 w-3/4 bg-white z-10">
-        {isTariffPage && (
-          <img 
-            src={logo}
-            alt="logo"
-            className="absolute top-4 left-4 w-auto h-auto z-20"
-          />
-        )}
-        
+  
+      {/* Logo - Appears on all pages */}
+      <img 
+        src={logo}
+        alt="logo"
+        className="absolute top-4 left-4 w-auto h-auto z-10"
+      />
+  
+      {/* Main Content Div (Peach for Tariff, White for Auth) */}
+      <div 
+        className={`absolute inset-y-0 right-0 w-3/4 ${
+          isTariffPage ? "bg-custom-peach" : isAuthPage ? "bg-white" : "bg-gray-100"
+        } z-10`}
+      >
         {children}
       </div>
     </div>
   );
-};
-
+  
+  
+  
+};  
 export default Layout;
