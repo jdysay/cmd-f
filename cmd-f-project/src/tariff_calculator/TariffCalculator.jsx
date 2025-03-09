@@ -51,17 +51,8 @@ const TariffCalculator = () => {
     return (
         <div className="tariff-container">          
             <div className="tariff-box">
-                <div className="tariff-title">
-                    <h1>Tariff Calculator</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-                        culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
+                <h1 className="tariff-title">Tariff Calculator</h1>
+                <p>Lorem ipsum</p>
 
                 <div className="messages-box">
                     {messages.map((msg, index) => (
@@ -77,9 +68,8 @@ const TariffCalculator = () => {
                         </div>
                     ))}
                 </div>
-            </div>
 
-            <div className="input-group">
+                <div className="input-group">
                     <div className="input-field">
                         <label htmlFor="product">Product</label>
                         <input
@@ -91,11 +81,10 @@ const TariffCalculator = () => {
                         />
                     </div>
 
-                    <img src={dollar} alt="dollar" className="dollar-icon" />
-
                     <div className="input-field">
                         <label htmlFor="price">Price</label>
                         <div className="price-input">
+                            <img src={dollar} alt="dollar" className="dollar-icon" />
                             <input
                                 id="price"
                                 type="number"
@@ -105,11 +94,12 @@ const TariffCalculator = () => {
                             />
                         </div>
                     </div>
-
-                    <button onClick={handleSendInfo} className="submit-button">
-                        Ask Gemini!
-                    </button>
                 </div>
+
+                <button onClick={handleSendInfo} className="submit-button">
+                    Ask Gemini!
+                </button>
+            </div>
         </div>
     );
 };
