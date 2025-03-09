@@ -7,7 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'custom-red': '#D2355D',
+        'custom-red': '#D65C67',
+        'custom-red-dark': '#920B2B',
+        'custom-peach': '#FDEBE5',
+        'custom-peach-medium': '#FFD2C3',
+        'custom-peach-dark': '#F8757D',
+        'custom-purple': '#543B75',
       }
     },
   },

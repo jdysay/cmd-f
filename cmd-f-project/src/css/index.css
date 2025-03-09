@@ -8,9 +8,9 @@
 } */
 
 /* Body styling */
-/* body {
-  @apply flex items-center justify-center min-h-screen bg-white;
-} */
+body {
+  @apply flex items-center justify-center min-h-screen;
+
 
 /* Form container */
 /* .form-container {
@@ -57,5 +57,7 @@
 /* Responsive text alignment */
 /* .forgot-password {
   @apply text-sm text-center mt-3 text-black;
+
 } */
+}
 
