@@ -1,42 +1,47 @@
 import "../css/Homepage.css";
 import Navbar from "./navbar";
 import Button from "./button";
+import { Link } from "react-router-dom"; // ✅ Import Link
 
 function TextBlock() {
   return (
     <div id="textblock">
       <div id="textblock-container">
-
         <div id="more-space">
-        <h1 id="textblock-title">About Maple Market</h1>
-        <br></br>
-        <p id="textblock-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-          officia deserunt mollit anim id est laborum.
-        </p>
-        <br></br>
-        <br></br>
-        
+          <h1 id="textblock-title">About Maple Market</h1>
+          <br></br>
+          <p id="textblock-content">
+            Maple Market is a digital platform built using modern web technologies to connect
+            Canadian businesses with consumers. It features an intuitive user interface, making
+            it simple for businesses to sign up, create profiles, and list their products. For
+            consumers, the platform provides a fast search functionality powered by efficient
+            indexing, ensuring they can easily find local, Canadian-made products.
+          </p>
+          <br></br>
+          <br></br>
 
-
-        {/* Buttons Section */}
-        <div className="button-container">
-          <Button size="lg" variant="solid" className="mr-4">
-            Explore
-          </Button>
-          <Button size="lg" variant="solid" className="mr-4">
-            Sell
-          </Button>
+          {/* Buttons Section */}
+          <div className="button-container">
+            <Link to="/lookup">
+              <Button size="lg" variant="solid" className="mr-4">
+                Explore
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button size="lg" variant="solid" className="mr-4">
+                Sell
+              </Button>
+            </Link>
+          </div>
+          <div className="button-container">
+            <Link to="/mission">  {/* ✅ Corrected: Wrapped Our Mission button with Link */}
+              <Button size="lg" variant="solid" className="mr-4">
+                Our Mission
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
-
-      </div>
-      
-
 
       <footer id="textblock-footer">
         <div className="footer-content">
@@ -51,13 +56,13 @@ function TextBlock() {
             <h3 className="footer-heading">Useful Links</h3>
             <ul className="footer-links">
               <li>
-                <a href="#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="#">Explore</a>
+                <Link to="/lookup">Explore</Link>
               </li>
               <li>
-                <a href="#">Sell</a>
+                <Link to="/login">Sell</Link>
               </li>
             </ul>
           </div>

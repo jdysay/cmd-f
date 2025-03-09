@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { doc, collection, addDoc } from 'firebase/firestore';
 import { db } from './../config/firestore.js';
-import './../css/BIF.css'
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import './../css/BIF.css';
 
 function BusinessInfoForm({ userId }) {
+  const navigate = useNavigate(); // Initialize navigate function
+
   async function addToDatabase(name, desc, site, email, categories) {
     try {
-      // Reference to the specific user document in the 'Users' collection
       const userDocRef = doc(db, "Users", userId);
-
-      // Reference to the 'businessInfo' subcollection of the specific user document
       const ordersCollectionRef = collection(userDocRef, "businessInfo");
 
-      // Add a new order document to the 'businessInfo' subcollection
       const docRef = await addDoc(ordersCollectionRef, {
         businessName: name,
         description: desc,
@@ -20,6 +19,7 @@ function BusinessInfoForm({ userId }) {
         businessEmail: email,
         tags: categories, // Store tags as an array
       });
+
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding to the database: ", e);
@@ -31,20 +31,22 @@ function BusinessInfoForm({ userId }) {
     description: "",
     website: "",
     businessEmail: "",
-    tags: "", // Store input as a comma-separated string
+    tags: "", 
   });
 
   const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+    const { name, value } = event.target;
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        addToDatabase(inputs.businessName, inputs.description, inputs.website, inputs.businessEmail);
-        console.log("submitted");
-    }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await addToDatabase(inputs.businessName, inputs.description, inputs.website, inputs.businessEmail);
+    console.log("submitted");
+
+    // Navigate to the success or dashboard page after submission
+    navigate("/profile"); // Change "/success" to your desired route
+  };
 
   return (
     <>
@@ -105,63 +107,15 @@ function BusinessInfoForm({ userId }) {
         </label>
         <br />
 
-        <input type="submit" value="Submit" />
+        <button
+          type="submit"
+          className="w-full bg-custom-red text-white mt-5 py-3 px-5 rounded-lg font-medium hover:bg-custom-red-dark focus:outline-none focus:ring-2 focus:ring-rose-400 transition duration-200"
+        >
+          Submit
+        </button>
       </form>
     </>
   );
-    return (
-        <>
-        <form onSubmit={handleSubmit}>
-            <div className="container">
-                <label>
-                Business Name
-                <input
-                    type="text"
-                    name="businessName"
-                    value={inputs.businessName}
-                    onChange={handleChange}
-                />
-                </label>
-
-                <label>
-                Business Email
-                <input
-                    type="text"
-                    name="businessEmail"
-                    value={inputs.businessEmail}
-                    onChange={handleChange}
-                />
-                </label>
-            </div>
-
-            <div className="container">
-                <label>
-                Website
-                <input
-                    type="text"
-                    name="website"
-                    value={inputs.website}
-                    onChange={handleChange}
-                />
-                </label>
-            </div>
-
-            <div className="container">
-                <label>
-                Business Description
-                <textarea
-                    name="description"
-                    value={inputs.description}
-                    onChange={handleChange}
-                />
-                </label>
-            </div>
-
-            <input id="submit-button" type="submit" value="Submit" />
-            </form>
-        </>
-    )
-
 }
 
 export default BusinessInfoForm;

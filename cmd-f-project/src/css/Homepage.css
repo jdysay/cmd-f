@@ -18,7 +18,7 @@
   #textblock-title {
     color: #ffe9da;
     font-size: 60px;
-    font-weight: 600;
+    font-weight: 500;
   }
   
   #textblock-content {
@@ -46,7 +46,7 @@
   .footer-section {
     flex: 1;
     min-width: 250px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     padding: 0 15px;
   }
   
@@ -92,6 +92,10 @@
     font-size: 0.9rem;
   }
   
+.button-container {
+  padding: 10px;
+}
+
   #textblock-devsense {
     text-decoration: none;
     color: #ffaf1b;
