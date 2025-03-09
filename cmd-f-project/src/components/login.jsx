@@ -65,6 +65,7 @@ function Login() {
           New user? <a href="/register" className="font-bold text-black hover:underline">Register Here</a>
         </p>
       </div>
+
     </div>
   );
 }

@@ -3,6 +3,9 @@ import { auth, db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
+import { Link } from "react-router-dom";
+
+
 function Profile() {
   const [userDetails, setUserDetails] = useState(null);
 
@@ -61,6 +64,11 @@ function Profile() {
           <p className="text-gray-600">Loading...</p>
         )}
       </div>
+
+      {/* Temporary button to get to business info form */}
+      <Link to="/business-info-form" className="btn">
+        Go to Profile
+      </Link>
     </div>
   );
 }
