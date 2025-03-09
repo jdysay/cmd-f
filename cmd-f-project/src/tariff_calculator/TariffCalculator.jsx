@@ -1,78 +1,83 @@
 import React, { useState } from 'react';
-import { fetchAIResponse } from './GeminiAI'; // Import the AI service
+import axios from 'axios';
 
 const TariffCalculator = () => {
-  const [productDescription, setProductDescription] = useState('');
-  const [productPrice, setProductPrice] = useState('');
-  const [tariff, setTariff] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+    const [product, setProduct] = useState('');
+    const [price, setPrice] = useState('');
+    const [messages, setMessages] = useState([]);
 
-  const handleProductDescriptionChange = (e) => {
-    setProductDescription(e.target.value);
-  };
+    const handleProductChange = (e) => {
+        setProduct(e.target.value);
+    };
 
-  const handleProductPriceChange = (e) => {
-    setProductPrice(e.target.value);
-  };
+    const handlePriceChange = (e) => {
+        setPrice(e.target.value);
+    };
 
-  const calculateTariff = async () => {
-    if (!productDescription || !productPrice) {
-      setError('Please enter both product description and price.');
-      return;
-    }
-
-    setError(null); 
-    setLoading(true);
-
-    try {
-      // Send the input data (product description and price) to the backend
-      const aiData = await fetchAIResponse(productDescription, productPrice);
-
-      if (aiData) {
-        // Assume AI returns a tariff value in aiData
-        setTariff(aiData.tariff);
-      } else {
-        setTariff('Error calculating tariff');
+    const handleSendInfo = async () => {
+      if (!product || !price) {
+          return alert('Please enter both a product and a price.');
       }
-    } catch (error) {
-      setError('An error occurred while calculating the tariff');
-    } finally {
-      setLoading(false);
-    }
+  
+      setMessages((prevMessages) => [
+          ...prevMessages,
+          { sender: 'user', text: `Product: ${product}, Price: ${price}` }
+      ]);
+  
+      try {
+          const response = await axios.post('http://localhost:5050/calculate-tariff', {
+              product,
+              price
+          });
+  
+
+          const aiText = response.data.aiResponse;  
+
+          setMessages((prevMessages) => [
+              ...prevMessages,
+              { sender: 'bot', text: aiText }
+          ]);
+      } catch (error) {
+          setMessages((prevMessages) => [
+              ...prevMessages,
+              { sender: 'bot', text: 'Sorry, something went wrong!' }
+          ]);
+      }
+  
+      setProduct('');
+      setPrice('');
   };
+  
 
-  return (
-    <div className="tariff-calculator">
-      <h2>Tariff Calculator</h2>
-      <div>
-        <input
-          type="text"
-          value={productDescription}
-          onChange={handleProductDescriptionChange}
-          placeholder="Enter product description"
-        />
-        <input
-          type="Number"
-          value={productPrice}
-          onChange={handleProductPriceChange}
-          placeholder="Enter price of product"
-        />
-        <button onClick={calculateTariff} disabled={loading}>
-          {loading ? 'Calculating...' : 'Calculate Tariff'}
-        </button>
-      </div>
-
-      {error && <div className="error">{error}</div>}
-
-      {tariff && (
-        <div>
-          <h3>Calculated Tariff: </h3>
-          <p>{tariff}</p>
+    return (
+        <div className="tariff-calculator-container">
+            <div className="chatbox">
+                {messages.map((msg, index) => (
+                    <div
+                        key={index}
+                        className={`message ${msg.sender}`}
+                    >
+                        <strong>{msg.sender === 'user' ? 'You' : 'Bot'}:</strong> {msg.text}
+                    </div>
+                ))}
+            </div>
+            <div className="input-container">
+                <input
+                    type="text"
+                    value={product}
+                    onChange={handleProductChange}
+                    placeholder="Enter product"
+                />
+                <input
+                    type="number"
+                    value={price}
+                    onChange={handlePriceChange}
+                    placeholder="Enter price"
+                />
+                <button onClick={handleSendInfo}>Calculate Tariff</button>
+            </div>
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default TariffCalculator;
