@@ -22,7 +22,7 @@ const images = [
   "../src/assets/bracelets.jpg",
   "../src/assets/candle1.jpg",
   "../src/assets/candle2.jpg",
-  "../src/assets/corchet animals.jpg",
+  "../src/assets/crochet-animals.jpg",
   "../src/assets/crochet.jpg",
   "../src/assets/earring.jpg",
 ];
@@ -37,6 +37,7 @@ function Lookup() {
   
   // Declare state for shuffled image pool
   const [shuffledImages, setShuffledImages] = useState([])
+  const [imageUsageIndex, setImageUsageIndex] = useState(0) // Track used images
 
   // Shuffle images and store the shuffled array
   useEffect(() => {
