@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { auth, db } from "./firebase";
 import { doc, getDoc, updateDoc, getDocs, collection } from "firebase/firestore";
 import { toast } from "react-toastify";
-
 import { Link } from "react-router-dom";
+
+import ImageAvatar from "./ImageAvatar.jsx"
 
 
 function Profile({ userId }) {
@@ -119,9 +120,9 @@ function Profile({ userId }) {
         {userDetails ? (
           <>
             <div className="flex justify-center mb-6">
-              <img
-                src={userDetails.photo || "/default-avatar.png"}
-                alt="Profile Picture"
+              <ImageAvatar 
+                imagePath={userDetails.photo || "/default-avatar.png"}
+                altText="Profile Picture"
                 className="w-32 h-32 rounded-full border border-gray-300 shadow-md"
               />
             </div>

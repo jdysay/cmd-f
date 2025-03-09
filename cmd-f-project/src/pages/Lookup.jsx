@@ -2,6 +2,8 @@ import React, { useEffect, useState, Suspense } from 'react';
 import { collection, getDocs, doc } from 'firebase/firestore';
 import { db } from '../components/firebase'; // Ensure this points to your Firebase config
 
+import ComboBox from '../components/ComboBox'
+
 // Lazy load the MUICardImage component
 const MUICardImage = React.lazy(() => import('../components/MUICardImage')); // Adjust the path to MUICardImage if necessary
 
@@ -38,19 +40,21 @@ function Lookup() {
 
   return (
     <div>
-      {businessData.length > 0 ? (
+        <ComboBox />
+
+        {businessData.length > 0 ? (
         <Suspense fallback={<p>Loading Cards...</p>}>
-          {businessData.map((business) => (
+            {businessData.map((business) => (
             <MUICardImage
-              key={business.id}
-              businessName={business.businessName}
-              description={business.description}
+                key={business.id}
+                businessName={business.businessName}
+                description={business.description}
             />
-          ))}
+            ))}
         </Suspense>
-      ) : (
+        ) : (
         <p>Loading...</p> // Show loading state while data is being fetched
-      )}
+        )}
     </div>
   );
 }
