@@ -34,26 +34,33 @@ function Profile() {
   }
 
   return (
-    <div className="form-container text-center">
-      {userDetails ? (
-        <>
-          <div className="flex justify-center mb-4">
-            <img
-              src={userDetails.photo || "/default-avatar.png"}
-              alt="Profile Picture"
-              className="w-32 h-32 rounded-full border border-gray-300 shadow-md"
-            />
-          </div>
-          <h3>Welcome, {userDetails.firstName}! 🙏</h3>
-          <div className="text-gray-700 text-left">
-            <p><strong>Email:</strong> {userDetails.email}</p>
-            <p><strong>First Name:</strong> {userDetails.firstName}</p>
-          </div>
-          <button onClick={handleLogout}>Logout</button>
-        </>
-      ) : (
-        <p className="text-gray-600">Loading...</p>
-      )}
+    <div className="flex items-center justify-center min-h-screen bg-white p-6">
+      <div className="bg-white shadow-lg rounded-lg p-6 sm:p-8 w-full max-w-[900px] border border-rose-200 text-center">
+        {userDetails ? (
+          <>
+            <div className="flex justify-center mb-6">
+              <img
+                src={userDetails.photo || "/default-avatar.png"}
+                alt="Profile Picture"
+                className="w-32 h-32 rounded-full border border-gray-300 shadow-md"
+              />
+            </div>
+            <h3 className="text-2xl font-semibold text-rose-600 mb-4">Welcome, {userDetails.firstName}! 🙏</h3>
+            <div className="text-gray-700 text-left mb-6">
+              <p><strong>Email:</strong> {userDetails.email}</p>
+              <p><strong>First Name:</strong> {userDetails.firstName}</p>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="w-full bg-rose-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-400 transition duration-200"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <p className="text-gray-600">Loading...</p>
+        )}
+      </div>
     </div>
   );
 }

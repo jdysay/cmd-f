@@ -19,6 +19,7 @@ import { ToastContainer } from "react-toastify";
 
 // more stuff for firebase
 import { auth } from "../components/firebase";
+import Homepage from "../components/homepage";
 
 
 function App() {
@@ -39,10 +40,11 @@ function App() {
       <div className="auth-inner">
         
         <Routes>
-          <Route
+          {/* <Route
             path="/"
-            element={user ? <Navigate to="/profile" /> : <Login />} />
+            element={user ? <Navigate to="/profile" /> : <Login />} /> */}
 
+          <Route path="/" element={<Homepage />} />
           {/* Define a route for the TariffCalculator component */}
           <Route path="/tariff-calculator" element={<TariffCalculator />} />
           <Route path="/login" element={<Login />} />
