@@ -6,15 +6,14 @@ import BusinessInfoForm from './BusinessInfoForm'
 import './../css/App.css'
 
 function App() {
-
+  console.log("hello there email");
   return (
     <Router>
       <div className="App">
-        <h1>Welcome to the Tariff Calculator App</h1>
         <Routes>
           {/* Define a route for the TariffCalculator component */}
           <Route path="/" element={<TariffCalculator />} />
-          <Route path="business-info-form" element={<BusinessInfoForm />} />
+          <Route path="business-info-form" element={<BusinessInfoForm userEmail="NgXi9b2B6YcVluTl1K6FnTKMgso2" />} />
         </Routes>
       </div>
     </Router>
