@@ -2,11 +2,13 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "./firebase";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();  // <-- Use navigate for redirection
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +17,7 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("User logged in Successfully", { position: "top-center" });
-      window.location.href = "/profile";
+      navigate("/profile");
     } catch (error) {
       setError(error.message);
       toast.error(error.message, { position: "bottom-center" });

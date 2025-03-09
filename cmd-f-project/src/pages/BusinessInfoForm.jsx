@@ -4,7 +4,7 @@ import { db } from './../config/firestore.js';
 import './../css/BIF.css'
 
 function BusinessInfoForm({ userId }) {
-  async function addToDatabase(name, desc, site, email, tags) {
+  async function addToDatabase(name, desc, site, email, categories) {
     try {
       // Reference to the specific user document in the 'Users' collection
       const userDocRef = doc(db, "Users", userId);
@@ -18,7 +18,7 @@ function BusinessInfoForm({ userId }) {
         description: desc,
         website: site,
         businessEmail: email,
-        tags: tags, // Store tags as an array
+        tags: categories, // Store tags as an array
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
