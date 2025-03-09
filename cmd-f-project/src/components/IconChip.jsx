@@ -8,7 +8,10 @@ export default function IconChip({ activeFilters, onFilterChange }) {
   const filters = [
     { label: "Women-Owned", value: "women" },
     { label: "BIPOC-Owned", value: "bipoc" },
-    { label: "Eco-Friendly", value: "ecofriendly" }
+    { label: "LGBTQ-Owned", value: "lgbtq" },
+    { label: "Sustainable", value: "sustainable" },
+    { label: "Clothing", value: "clothing" },
+    { label: "Eco-Friendly", value: "ecofriendly" },
   ];
 
   return (
@@ -16,7 +19,6 @@ export default function IconChip({ activeFilters, onFilterChange }) {
       {filters.map((filter) => (
         <Chip
           key={filter.value}
-          icon={<FaceIcon />}
           label={filter.label}
           onClick={() => onFilterChange(filter.value)} // Handle filter toggle
           clickable
