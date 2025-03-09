@@ -6,9 +6,9 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        'custom-red': '#D2355D',
-      }
+      fontFamily: {
+        caprasimo: ['Caprasimo', 'cursive'],
+      },
     },
   },
   plugins: [],
