@@ -7,7 +7,7 @@ function BusinessInfoForm({userEmail}){
     async function addToDatabase(name, desc, site, email){
         try {
             // Reference to the specific user document in the 'users' collection
-            const userDocRef = doc(db, "/Users", userEmail);
+            const userDocRef = doc(db, "Users", userEmail);
 
             // Reference to the 'businessInfo' subcollection of the specific user document
             const ordersCollectionRef = collection(userDocRef, "businessInfo");

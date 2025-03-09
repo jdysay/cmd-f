@@ -54,46 +54,48 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      {/* <Layout>
-        <div className="App">
-          <div className="auth-wrapper">
-            <div className="auth-inner">
-              <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/tariff-calculator" element={<TariffCalculator />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/profile" element={<Profile />} />
-              </Routes>
-              <ToastContainer />
+    <AuthProvider>
+      <Router>
+        {/* <Layout>
+          <div className="App">
+            <div className="auth-wrapper">
+              <div className="auth-inner">
+                <Routes>
+                  <Route path="/" element={<Homepage />} />
+                  <Route path="/tariff-calculator" element={<TariffCalculator />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/profile" element={<Profile />} />
+                </Routes>
+                <ToastContainer />
+              </div>
             </div>
           </div>
-        </div>
-      </Layout> */}
-      <div className="App">
-      <div className="auth-wrapper">
-      <div className="auth-inner">
-        
-        <Routes>
-          {/* <Route
-            path="/"
-            element={user ? <Navigate to="/profile" /> : <Login />} /> */}
+        </Layout> */}
+        <div className="App">
+        <div className="auth-wrapper">
+        <div className="auth-inner">
+          
+          <Routes>
+            {/* <Route
+              path="/"
+              element={user ? <Navigate to="/profile" /> : <Login />} /> */}
 
-          <Route path="/" element={<Homepage />} />
-          {/* Define a route for the TariffCalculator component */}
-          <Route path="/tariff-calculator" element={<TariffCalculator />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/business-info-form" element={<BusinessInfoForm />} />
-          <Route path="/lookup" element={<Lookup />} />
-        </Routes>
-        <ToastContainer/>
-      </div>
-      </div>
-      </div>
-    </Router>
+            <Route path="/" element={<Homepage />} />
+            {/* Define a route for the TariffCalculator component */}
+            <Route path="/tariff-calculator" element={<TariffCalculator />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/business-info-form" element={<ProtectedRoute />} />
+            <Route path="/lookup" element={<Lookup />} />
+          </Routes>
+          <ToastContainer/>
+        </div>
+        </div>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
