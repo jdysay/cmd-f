@@ -17,6 +17,7 @@ import { ToastContainer } from "react-toastify";
 
 // Firebase auth
 import { auth } from "../components/firebase";
+import Homepage from "../components/homepage";
 
 import Lookup from "./Lookup";
 
@@ -55,12 +56,12 @@ function App() {
 
   return (
     <Router>
-      <Layout>
+      {/* <Layout>
         <div className="App">
           <div className="auth-wrapper">
             <div className="auth-inner">
               <Routes>
-                <Route path="/" element={user ? <Navigate to="/profile" /> : <Login />} />
+                <Route path="/" element={<Homepage />} />
                 <Route path="/tariff-calculator" element={<TariffCalculator />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
@@ -70,7 +71,7 @@ function App() {
             </div>
           </div>
         </div>
-      </Layout>
+      </Layout> */}
       <div className="App">
       <div className="auth-wrapper">
       <div className="auth-inner">
@@ -86,6 +87,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/business-info-form" element={<BusinessInfoForm />} />
+          <Route path="/lookup" element={<Lookup />} />
         </Routes>
         <ToastContainer/>
       </div>
