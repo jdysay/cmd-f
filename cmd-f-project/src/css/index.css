@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -70,3 +71,62 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+=======
+/* Root styles */
+:root {
+  @apply text-gray-900 bg-white font-sans;
+}
+
+/* Body styling */
+body {
+  @apply flex items-center justify-center min-h-screen bg-white;
+}
+
+/* Form container */
+.form-container {
+  @apply bg-white shadow-lg rounded-lg p-6 sm:p-8 w-full  max-w-[900px] border border-rose-200;
+  width: 30vw;
+}
+
+
+/* Headings */
+h3 {
+  @apply text-2xl font-semibold text-center mb-4 text-rose-600;
+}
+
+/* Labels */
+label {
+  @apply block text-sm font-medium text-black mb-1 text-left;
+}
+
+/* Input fields */
+input {
+  @apply w-full p-3 rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-700 placeholder-gray-500;
+}
+
+/* Placeholder text styling */
+input::placeholder {
+  @apply text-gray-500;
+}
+
+/* Error messages */
+.error-message {
+  @apply text-sm text-rose-600 mt-1;
+}
+
+/* Button styling */
+button {
+  @apply w-full bg-rose-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-400 transition duration-200;
+}
+
+/* Link styling */
+a {
+  @apply font-bold text-black hover:underline;
+}
+
+/* Responsive text alignment */
+.forgot-password {
+  @apply text-sm text-center mt-3 text-black;
+}
+
+>>>>>>> origin/main
