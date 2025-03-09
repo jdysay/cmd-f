@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { doc, collection, addDoc } from 'firebase/firestore';
 import { db } from '../config/firestore.js';
 import './../css/BIF.css'
+import React from 'react';
 
 function BusinessInfoForm({userId}){
 
