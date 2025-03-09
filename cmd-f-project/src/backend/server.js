@@ -55,8 +55,8 @@ app.post('/calculate-tariff', async (req, res) => {
   });
 });
 
-// Use '0.0.0.0' to allow the app to accept connections from any external IP, 
-// and bind it to the port specified by the environment variable or fallback port
-app.listen(port, '0.0.0.0', () => {
+
+
+app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
