@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import TariffCalculator from './tariff_calculator/TariffCalculator';
-import './App.css'
+import TariffCalculator from './../tariff_calculator/TariffCalculator';
+import './../css/App.css'
 
 function App() {
 
