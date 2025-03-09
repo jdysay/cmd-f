@@ -1,13 +1,19 @@
 import "../css/Homepage.css";
 import Navbar from "./navbar";
 import Button from "./button";
+<<<<<<< Updated upstream
 import { Link } from "react-router-dom"; // ✅ Import Link
+=======
+import { Link } from "react-router-dom";
+
+>>>>>>> Stashed changes
 
 function TextBlock() {
   return (
     <div id="textblock">
       <div id="textblock-container">
         <div id="more-space">
+<<<<<<< Updated upstream
           <h1 id="textblock-title">About Maple Market</h1>
           <br></br>
           <p id="textblock-content">
@@ -40,6 +46,32 @@ function TextBlock() {
               </Button>
             </Link>
           </div>
+=======
+        <h1 id="textblock-title">About Maple Market</h1>
+        <br></br>
+        <p id="textblock-content">
+        Maple Market is a digital platform built using modern web technologies to connect Canadian businesses with consumers. It features an intuitive user interface, making it simple for businesses to sign up, create profiles, and list their products. For consumers, the platform provides a fast search functionality powered by efficient indexing, ensuring they can easily find local, Canadian-made products.
+        </p>
+        
+        <br></br>
+        <br></br>
+        
+
+
+        {/* Buttons Section */}
+        <div className="button-container">
+        <Link to="/lookup">
+          <Button size="lg" variant="solid" className="mr-4">
+            Explore
+          </Button>
+        </Link>
+
+        <Link to="/login">
+          <Button size="lg" variant="solid" className="mr-4">
+            Sell
+          </Button>
+          </Link>
+>>>>>>> Stashed changes
         </div>
       </div>
 
