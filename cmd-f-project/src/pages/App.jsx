@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import TariffCalculator from "../tariff_calculator/TariffCalculator";
 import BusinessInfoForm from './BusinessInfoForm';
+import Layout from "../layouts/Layouts";
 
 import "./../css/App.css";
 
@@ -20,7 +21,6 @@ import Lookup from "./Lookup";
 
 // Authentication
 import { AuthProvider, useAuth } from "../database/AuthContext.jsx"; 
-import Layout from '../layouts/Layouts';
 
 // Import the Mission component
 import Mission from "../components/mission"; 
@@ -56,6 +56,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <Layout>
         <div className="App">
           <div className="auth-wrapper">
             <div className="auth-inner">
@@ -74,6 +75,7 @@ function App() {
             </div>
           </div>
         </div>
+        </Layout>
       </Router>
     </AuthProvider>
   );
