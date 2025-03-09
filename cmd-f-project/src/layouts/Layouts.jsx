@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
       />
       
       {/* Content Div */}
-      <div className="absolute inset-y-0 right-0 w-1/2 bg-white z-10">
+      <div className="absolute inset-y-0 right-0 w-3/4 bg-white z-10">
         {isTariffPage && (
           <img 
             src={logo}
